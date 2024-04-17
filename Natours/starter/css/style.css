@@ -1,0 +1,45 @@
+/*
+COLORS:
+
+Light green: #7ed56f
+Medium green: #55c57a
+Dark green: #28b485
+
+*/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Especifica que los tamaños de bordes,margenes o paddings esten dentro del tamaño total del componente (componente de 100px con borde de 10px === caja de 90px + borde de 10px) */
+}
+
+/* Siempre las fuentes van en el body, ya que estas se heredan por todas las etiquetas hijas */
+body {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #777;
+
+  /* Esto ya no se hereda */
+  padding: 30px;
+}
+
+.header {
+  height: 95vh; /* vh es un porcentaje del tamaño que tenga la pantalla */
+  background-image: linear-gradient(
+      to right bottom,
+      rgba(126, 213, 111, 0.8),
+      rgba(39, 180, 133, 0.8)
+    ),
+    url("../img/hero.jpg");
+  background-size: cover; /* sin importar el tamaño de la pantalla, siempre se intenta que la imagen se acomode a la misma */
+  background-position: top; /* si la imagen se tiene que recortar, el "top" se mantiene fijo y corta por debajo */
+
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% 75vh,
+    0 100%
+  ); /* espeficica que es lo que realmente se ve del componente marcando puntos cardinales, el orden de los puntos es en sentido horario siempre teniendo como referencia el primero de todos */
+}
