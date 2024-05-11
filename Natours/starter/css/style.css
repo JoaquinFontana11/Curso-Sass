@@ -42,4 +42,176 @@ body {
     100% 75vh,
     0 100%
   ); /* espeficica que es lo que realmente se ve del componente marcando puntos cardinales, el orden de los puntos es en sentido horario siempre teniendo como referencia el primero de todos */
+
+  position: relative; /* Con esto la clase "logo_box" tomara este elemento como referencia como punto de partida para calcular su posicion */
+}
+
+.logo_box {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+}
+
+.logo {
+  height: 40px;
+}
+
+/* todo lo que se encuentra dentro de esta clase es necesario para que un elemento este justo en el centro del elemento padre y asi se mantenga sin importar los cambios de tamaño de la pantalla */
+.text_box {
+  position: absolute;
+  top: 40%; /* deberia ser 50 pero es 40 ya que la imagen de fondo esta recortada con "clip-path" */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.primary_heading {
+  color: #fff;
+  text-transform: uppercase;
+  margin-bottom: 60px;
+}
+
+.primary_heading_main {
+  display: block;
+  font-size: 60px; /* tamaño de la fuente */
+  font-weight: 400; /* ancho de la fuente */
+  letter-spacing: 30px; /* espacio en blanco entre letra y letra */
+
+  animation-name: moveInLeft; /* Nombre de la animacion */
+  animation-duration: 1s; /* Duracion de la animacion */
+  animation-timing-function: ease-in; /* Funcion que modifica como utiliza el tiempo de la animacion  
+  Mas info: https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timing-function */
+
+  /*
+  animation-delay: 3s; Setea un tiempo de espera antes de realizar la animacion
+  animation-iteration-count: 3; Cantidad de veces que se repetira la animacion
+  */
+}
+
+.primary_heading_sub {
+  display: block;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 13px;
+
+  animation: moveInRight 1s ease-in; /* Forma abreviada de configurar una animacion. El orden de los parametro es: 
+  name, duration, timing-function, delay, iteration-count, direction, fill-mode */
+}
+
+/*
+ Los keyframes son usados para crear animaciones totalmente personalzadas, se puede interactuar con cada momento de la animacion utilizando %.
+ Se recomienda solo modificar 2 propiedades de los elementos la opacidad y el transform ya que es para lo que estan preparados los navegadores  
+ */
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+
+  80% {
+    transform: translateX(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+
+  80% {
+    transform: translateX(-10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/*
+ :link y :visited son pseudo-clases que se ejecutan bajo cierta condicion, en este caso :link es cuando una etiqueta a nunca fue visitada y
+ :visited es cuando una etiqueta a fue vsitada y se vuelve a ver
+ */
+.btn:link,
+.btn:visited {
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 15px 40px;
+  border-radius: 100px;
+  display: inline-block;
+  transition: all 0.2s; /* Es la 2da forma de crear animaciones. En este caso primero definimos que propiedad queremos animar y luego el tiempo que dura */
+  position: relative; /* Necesario para que su hijo virtual se posicione detras de el correctamente */
+}
+
+/* pseudo-clase que se activa cuando el mouse esta sobre el elemento */
+.btn:hover {
+  transform: translateY(
+    -3px
+  ); /* Esto junto con el transition movera hacia arriba el boton de manera suave */
+  box-shadow: 0 20px 15px rgba(0, 0, 0, 0.2); /* Mismo caso que arriba, genera una sombra de manera suave teniendo en cuenta el transition */
+}
+
+/* pseudo-clase que se activa cuando se clickea el elemento */
+.btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn_white {
+  background-color: #fff;
+  color: #777;
+}
+
+/*
+ Crea un elemento virtual justo despues del elemento que tiene la clase asociada. 
+ Este elemento virtual se comporta como un hijo del elemento con la clase 
+*/
+.btn::after {
+  content: ""; /* Es obligatorio para que el elemento se vea. El contenido puede ser "", pero la propiedad debe declararse */
+  display: inline-block; /* Igual que arriba */
+  width: 100%;
+  height: 100%;
+  border-radius: 100px;
+
+  /* Posicionamiento detras del padre */
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+
+  /* Animacion */
+  transition: all 0.4s;
+}
+
+.btn_white::after {
+  background-color: #fff;
+}
+
+/* Aplicar propiedades en el elemento virtual cuando se posiciona el mouse sobre el */
+.btn:hover::after {
+  transform: scaleX(1.4) scaleY(1.6); /* Escala el elemento. Si el escalado es el mismo en ambas direcciones se puede usar scale() */
+  opacity: 0;
+}
+
+.btn_animated {
+  animation: moveInBottom 0.5s ease-out 0.75s;
+  animation-fill-mode: backwards; /* Hace que las propiedades que se encuentran en el 0% de la animacion se seteen en el elemento antes de comenzar la animacion */
 }
