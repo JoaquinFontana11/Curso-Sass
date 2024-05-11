@@ -61,18 +61,18 @@ body {
   position: relative; /* Con esto la clase "logo_box" tomara este elemento como referencia como punto de partida para calcular su posicion */
 }
 
-.logo_box {
+.header__logo-box {
   position: absolute;
   top: 4rem;
   left: 4rem;
 }
 
-.logo {
+.header__logo {
   height: 4rem;
 }
 
 /* todo lo que se encuentra dentro de esta clase es necesario para que un elemento este justo en el centro del elemento padre y asi se mantenga sin importar los cambios de tamaño de la pantalla */
-.text_box {
+.header__text-box {
   position: absolute;
   top: 40%; /* deberia ser 50 pero es 40 ya que la imagen de fondo esta recortada con "clip-path" */
   left: 50%;
@@ -80,13 +80,13 @@ body {
   text-align: center;
 }
 
-.primary_heading {
+.primary-heading {
   color: #fff;
   text-transform: uppercase;
   margin-bottom: 6rem;
 }
 
-.primary_heading_main {
+.primary-heading--main {
   display: block;
   font-size: 6rem; /* tamaño de la fuente */
   font-weight: 400; /* ancho de la fuente */
@@ -103,7 +103,7 @@ body {
   */
 }
 
-.primary_heading_sub {
+.primary-heading--sub {
   display: block;
   font-size: 3rem;
   font-weight: 700;
@@ -191,7 +191,7 @@ body {
   box-shadow: 0 1rem 1.5rem rgba(0, 0, 0, 0.2);
 }
 
-.btn_white {
+.btn--white {
   background-color: #fff;
   color: #777;
 }
@@ -217,7 +217,7 @@ body {
   transition: all 0.4s;
 }
 
-.btn_white::after {
+.btn--white::after {
   background-color: #fff;
 }
 
@@ -227,7 +227,7 @@ body {
   opacity: 0;
 }
 
-.btn_animated {
+.btn--animated {
   animation: moveInBottom 0.5s ease-out 0.75s;
   animation-fill-mode: backwards; /* Hace que las propiedades que se encuentran en el 0% de la animacion se seteen en el elemento antes de comenzar la animacion */
 }
