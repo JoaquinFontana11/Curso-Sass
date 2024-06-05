@@ -1,4 +1,9 @@
-@charset "UTF-8";
+$color-primary: #55c57a;
+$color-primary-ligth: #7ed56f;
+$color-primary-dark: #28b485;
+$color-gray: #777;
+$color-white: #fff;
+
 /*
 Todos los elementos HTML y los generados con pseudoclases deben tener este comportamiento
 */
@@ -24,18 +29,32 @@ body {
   font-family: "Lato", sans-serif;
   font-weight: 400;
   line-height: 1.7;
-  color: #777;
+  color: $color-gray;
+
   /* Esto ya no se hereda */
   padding: 30px;
+
   box-sizing: border-box; /* Especifica que los tamaños de bordes,margenes o paddings esten dentro del tamaño total del componente (componente de 100px con borde de 10px === caja de 90px + borde de 10px) */
 }
 
 .header {
   height: 95vh; /* vh es un porcentaje del tamaño que tenga la pantalla */
-  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url("../img/hero.jpg");
+  background-image: linear-gradient(
+      to right bottom,
+      rgba($color-primary-ligth, 0.8),
+      rgba($color-primary-dark, 0.8)
+    ),
+    url("../img/hero.jpg");
   background-size: cover; /* sin importar el tamaño de la pantalla, siempre se intenta que la imagen se acomode a la misma */
   background-position: top; /* si la imagen se tiene que recortar, el "top" se mantiene fijo y corta por debajo */
-  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); /* espeficica que es lo que realmente se ve del componente marcando puntos cardinales, el orden de los puntos es en sentido horario siempre teniendo como referencia el primero de todos */
+
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% 75vh,
+    0 100%
+  ); /* espeficica que es lo que realmente se ve del componente marcando puntos cardinales, el orden de los puntos es en sentido horario siempre teniendo como referencia el primero de todos */
+
   position: relative; /* Con esto la clase "logo_box" tomara este elemento como referencia como punto de partida para calcular su posicion */
 }
 
@@ -59,7 +78,7 @@ body {
 }
 
 .primary-heading {
-  color: #fff;
+  color: $color-white;
   text-transform: uppercase;
   margin-bottom: 6rem;
 }
@@ -69,10 +88,12 @@ body {
   font-size: 6rem; /* tamaño de la fuente */
   font-weight: 400; /* ancho de la fuente */
   letter-spacing: 3rem; /* espacio en blanco entre letra y letra */
+
   animation-name: moveInLeft; /* Nombre de la animacion */
   animation-duration: 1s; /* Duracion de la animacion */
   animation-timing-function: ease-in; /* Funcion que modifica como utiliza el tiempo de la animacion  
-Mas info: https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timing-function */
+  Mas info: https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timing-function */
+
   /*
   animation-delay: 3s; Setea un tiempo de espera antes de realizar la animacion
   animation-iteration-count: 3; Cantidad de veces que se repetira la animacion
@@ -84,8 +105,9 @@ Mas info: https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timing-func
   font-size: 3rem;
   font-weight: 700;
   letter-spacing: 1.3rem;
+
   animation: moveInRight 1s ease-in; /* Forma abreviada de configurar una animacion. El orden de los parametro es: 
-name, duration, timing-function, delay, iteration-count, direction, fill-mode */
+  name, duration, timing-function, delay, iteration-count, direction, fill-mode */
 }
 
 /*
@@ -97,37 +119,45 @@ name, duration, timing-function, delay, iteration-count, direction, fill-mode */
     opacity: 0;
     transform: translateX(-10rem);
   }
+
   80% {
     transform: translateX(1rem);
   }
+
   100% {
     opacity: 1;
     transform: translateX(0);
   }
 }
+
 @keyframes moveInRight {
   0% {
     opacity: 0;
     transform: translateX(10rem);
   }
+
   80% {
     transform: translateX(-1rem);
   }
+
   100% {
     opacity: 1;
     transform: translateX(0);
   }
 }
+
 @keyframes moveInBottom {
   0% {
     opacity: 0;
     transform: translateY(3rem);
   }
+
   100% {
     opacity: 1;
     transform: translateX(0);
   }
 }
+
 /*
  :link y :visited son pseudo-clases que se ejecutan bajo cierta condicion, en este caso :link es cuando una etiqueta a nunca fue visitada y
  :visited es cuando una etiqueta a fue vsitada y se vuelve a ver
@@ -146,7 +176,9 @@ name, duration, timing-function, delay, iteration-count, direction, fill-mode */
 
 /* pseudo-clase que se activa cuando el mouse esta sobre el elemento */
 .btn:hover {
-  transform: translateY(-0.3rem); /* Esto junto con el transition movera hacia arriba el boton de manera suave */
+  transform: translateY(
+    -0.3rem
+  ); /* Esto junto con el transition movera hacia arriba el boton de manera suave */
   box-shadow: 0 2rem 1.5rem rgba(0, 0, 0, 0.2); /* Mismo caso que arriba, genera una sombra de manera suave teniendo en cuenta el transition */
 }
 
@@ -157,8 +189,8 @@ name, duration, timing-function, delay, iteration-count, direction, fill-mode */
 }
 
 .btn--white {
-  background-color: #fff;
-  color: #777;
+  background-color: $color-white;
+  color: $color-gray;
 }
 
 /*
@@ -171,17 +203,19 @@ name, duration, timing-function, delay, iteration-count, direction, fill-mode */
   width: 100%;
   height: 100%;
   border-radius: 10rem;
+
   /* Posicionamiento detras del padre */
   position: absolute;
   top: 0;
   left: 0;
   z-index: -1;
+
   /* Animacion */
   transition: all 0.4s;
 }
 
 .btn--white::after {
-  background-color: #fff;
+  background-color: $color-white;
 }
 
 /* Aplicar propiedades en el elemento virtual cuando se posiciona el mouse sobre el */
@@ -194,5 +228,3 @@ name, duration, timing-function, delay, iteration-count, direction, fill-mode */
   animation: moveInBottom 0.5s ease-out 0.75s;
   animation-fill-mode: backwards; /* Hace que las propiedades que se encuentran en el 0% de la animacion se seteen en el elemento antes de comenzar la animacion */
 }
-
-/*# sourceMappingURL=style.css.map */
