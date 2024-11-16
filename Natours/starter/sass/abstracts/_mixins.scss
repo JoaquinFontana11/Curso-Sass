@@ -1,0 +1,8 @@
+// Evita que el Height de los contenedores que solo tienen elementos float colapse, insertando un elemento "fantasma" al final del contenedor
+@mixin clearfix {
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
