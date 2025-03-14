@@ -1,7 +1,6 @@
 .row {
   //Se usa max para que, si la pantalla lo permite, el width sea de 114rem. Sino se intentara ajustar lo maximo posible al valor (RESPONSIVE)
   max-width: $grid-width;
-  background-color: #eeee;
   //Centrar todos los elementos internos en el centro del elemento padre SIN flex.
   margin: 0 auto;
 
@@ -20,8 +19,6 @@
   //    *= : Selecciona todos los que contengan a algo
   //    $= : Selecciona todos los que terminen con algo
   [class^="col-"] {
-    background-color: orangered;
-    color: white;
     //Posiciona el elemento a la izquierda o dercha pero permite que los elementos de texto y en linea (inline) aparezcan a su costado
     float: left;
 
